@@ -4,13 +4,14 @@ import axios from 'axios';
 import { from } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, catchError } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AxiosSFService {
   data : any
+  @Input() product : string;
 
   constructor(private http: HttpClient) {}
 
@@ -36,9 +37,9 @@ export class AxiosSFService {
     request$.subscribe((response) =>
       console.log(response.hints[0].food.nutrients, 'response')
     ); */
-
+      this.product = 'kurkure'
     const options = {
-      params: { ingr: 'kitkat' },
+      params: { ingr: this.product },
       headers: {
         'X-RapidAPI-Key': 'b28fcd628bmshd46137e6275c3e5p126803jsn32f06b438923',
         'X-RapidAPI-Host': 'edamam-food-and-grocery-database.p.rapidapi.com',

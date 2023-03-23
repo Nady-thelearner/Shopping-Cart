@@ -1,3 +1,18 @@
+<form #postForm="ngForm" (ngSubmit)="onCreatePost()">
+  <!-- postForm.value -->
+  <div>
+    <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+
+      class="form-control"
+    />
+  </div>
+  <hr>
+  <button class="btn btn-primary" click="submitVal()">Submit</button>
+</form>
+<!-- formControlName="name" -->
 
 <table class="table">
   <thead>
@@ -5,27 +20,37 @@
       <th scope="col">#</th>
       <th scope="col">category</th>
       <th scope="col">Lable</th>
-      <th scope="col">Image</th>
+      <th scope="col">Nutrients</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>{{data.hints[0].food.category}}</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr *ngFor="let val of arr1; index as i">
+      <th scope="row">{{i+1}}</th>
+      <td>{{ val.category }}</td>
+      <td>{{ val.label }}</td>
+      <td>
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ChocDF</th>
+            <th scope="col">Energy Kcal</th>
+            <th scope="col">Fat</th>
+            <th scope="col">Fiber</th>
+            <th scope="col">Protien</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ val.nutrients.CHODF ? (val.nutrients.CHOCDF.toFixed(3) ? val.nutrients.CHOCDF.toFixed(3) : 0.000) : 0.000}}</td>
+            <td>{{ val.nutrients.ENERC_KCAL ? (val.nutrients.ENERC_KCAL.toFixed(3) ? val.nutrients.ENERC_KCAL.toFixed(3) : 0.000) : 0.000 }}</td>
+            <td>{{ val.nutrients.FAT ? (val.nutrients.FAT.toFixed(3) ? val.nutrients.FAT.toFixed(3) : 0.000)  : 0.000 }}</td>
+            <td>{{ val.nutrients.FIBTG ? (val.nutrients.FIBTG.toFixed(3) ? val.nutrients.FIBTG.toFixed(3) : 0.000) : 0.000 }}</td>
+            <td>{{val.nutrients.PROCNT  ?  (val.nutrients.PROCNT.toFixed(3) ? val.nutrients.PROCNT.toFixed(3) : 0.000) : 0.000 }}</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
     </tr>
   </tbody>
 </table>
+<!-- *ngFor="let item of data; index as i" -->
