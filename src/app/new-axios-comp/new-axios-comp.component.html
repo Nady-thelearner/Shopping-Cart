@@ -1,20 +1,21 @@
-<form #postForm="ngForm" (ngSubmit)="onCreatePost()">
-  <!-- postForm.value -->
+
+  <!-- ----------------------------------------------------------------------------------------- -->
   <div>
     <label for="name">Name</label>
     <input
       type="text"
+      (input)="onInputChange($event.target.value)"
       id="name"
 
       class="form-control"
     />
   </div>
   <hr>
-  <button class="btn btn-primary" click="submitVal()">Submit</button>
-</form>
-<!-- formControlName="name" -->
+  <button class="btn btn-primary" (click)="submitVal()">Submit</button>
 
-<table class="table">
+<!-- ------------------------------------------------------------------------------------------- -->
+
+<table class="table" *ngIf="data" class="styled-table">
   <thead>
     <tr>
       <th scope="col">#</th>
